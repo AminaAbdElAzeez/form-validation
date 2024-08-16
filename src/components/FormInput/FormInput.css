@@ -1,0 +1,47 @@
+.form-input {
+  padding: 15px;
+  margin: 15px 0px;
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid gray;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: outline 0.5s, border 0.5s;
+  -webkit-transition: outline 0.5s, border 0.5s;
+  -moz-transition: outline 0.5s, border 0.5s;
+  -ms-transition: outline 0.5s, border 0.5s;
+  -o-transition: outline 0.5s, border 0.5s;
+}
+.form-label {
+  display: block;
+  font-size: 14px;
+  color: #b98c53;
+}
+span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: block;
+  margin-bottom: 10px;
+  display: none;
+}
+input:invalid[focused="true"] {
+  border: 1px solid red;
+}
+input:invalid[focused="true"] ~ span {
+  display: block;
+}
+.input-container {
+  position: relative;
+}
+
+.bi {
+  font-size: 22px;
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  color: #b98c53;
+}
