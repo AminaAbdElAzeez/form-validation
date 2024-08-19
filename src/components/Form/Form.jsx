@@ -15,6 +15,7 @@ function Form() {
   const [showToast, setShowToast] = useState(false);
   const [formValid, setFormValid] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
 
   const inputs = [
     {
@@ -84,6 +85,7 @@ function Form() {
   const removeImage = () => {
     setValues({ ...values, image: null });
     setImagePreview("");
+    setFileInputKey(Date.now()); // Reset the file input
   };
 
   const handleSubmit = (e) => {
@@ -95,8 +97,7 @@ function Form() {
       values.password &&
       values.confirmPassword &&
       values.password === values.confirmPassword &&
-      values.phone.match(/^\d{10,14}$/) &&
-      values.image
+      values.phone.match(/^\d{10,14}$/)
     ) {
       setFormValid(true);
       setShowToast(true);
@@ -106,7 +107,9 @@ function Form() {
       formData.append("email", values.email);
       formData.append("phone", values.phone);
       formData.append("password", values.password);
-      formData.append("image", values.image);
+      if (values.image) {
+        formData.append("image", values.image);
+      }
 
       // Send form data
       fetch("https://www.appssquare.sa/api/submit", {
@@ -158,6 +161,7 @@ function Form() {
           Upload Image:
         </label>
         <input
+          key={fileInputKey} // Reset input by changing key
           className="form-image"
           type="file"
           name="image"
