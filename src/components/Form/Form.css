@@ -43,7 +43,7 @@ form > h1 {
 }
 .toast {
   position: absolute;
-  top: 20px;
+  top: 360px;
   left: 50%;
   background-color: #b98c53;
   color: #fff;
