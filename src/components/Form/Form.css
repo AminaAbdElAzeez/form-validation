@@ -73,24 +73,46 @@ form > h1 {
   0% {
     opacity: 0;
     transform: translateX(-50%) translateY(-20px);
+    -webkit-transform: translateX(-50%) translateY(-20px);
+    -moz-transform: translateX(-50%) translateY(-20px);
+    -ms-transform: translateX(-50%) translateY(-20px);
+    -o-transform: translateX(-50%) translateY(-20px);
   }
   10% {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+    -webkit-transform: translateX(-50%) translateY(0);
+    -moz-transform: translateX(-50%) translateY(0);
+    -ms-transform: translateX(-50%) translateY(0);
+    -o-transform: translateX(-50%) translateY(0);
   }
   90% {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+    -webkit-transform: translateX(-50%) translateY(0);
+    -moz-transform: translateX(-50%) translateY(0);
+    -ms-transform: translateX(-50%) translateY(0);
+    -o-transform: translateX(-50%) translateY(0);
   }
   100% {
     opacity: 0;
     transform: translateX(-50%) translateY(-20px);
+    -webkit-transform: translateX(-50%) translateY(-20px);
+    -moz-transform: translateX(-50%) translateY(-20px);
+    -ms-transform: translateX(-50%) translateY(-20px);
+    -o-transform: translateX(-50%) translateY(-20px);
   }
 }
 .form-image {
   margin: 20px 0;
   color: #b98c53;
   width: 100%;
+}
+.image-preview {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 120px;
 }
 .uploaded-image {
   width: 120px;
@@ -102,4 +124,21 @@ form > h1 {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+.remove-image {
+  background: #fff;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: red;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+  padding: 0px 6px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }

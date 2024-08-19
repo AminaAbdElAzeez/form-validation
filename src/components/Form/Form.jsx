@@ -8,6 +8,7 @@ function Form() {
     email: "",
     password: "",
     confirmPassword: "",
+    phone: "",
     image: null,
   });
 
@@ -57,6 +58,16 @@ function Form() {
       pattern: values.password,
       required: true,
     },
+    {
+      id: 5,
+      name: "phone",
+      type: "text",
+      placeholder: "Phone",
+      errorMessage: "Phone number should be a valid 10-14 digits number!",
+      label: "Phone",
+      pattern: `^\\d{10,14}$`,
+      required: true,
+    },
   ];
 
   const handleImageChange = (e) => {
@@ -70,6 +81,11 @@ function Form() {
     reader.readAsDataURL(file);
   };
 
+  const removeImage = () => {
+    setValues({ ...values, image: null });
+    setImagePreview("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -79,23 +95,30 @@ function Form() {
       values.password &&
       values.confirmPassword &&
       values.password === values.confirmPassword &&
+      values.phone.match(/^\d{10,14}$/) &&
       values.image
     ) {
       setFormValid(true);
       setShowToast(true);
 
       const formData = new FormData();
-      formData.append("username", values.username);
+      formData.append("name", values.username);
       formData.append("email", values.email);
+      formData.append("phone", values.phone);
       formData.append("password", values.password);
-      formData.append("confirmPassword", values.confirmPassword);
       formData.append("image", values.image);
 
-      fetch("/your-api-endpoint", {
+      // Send form data
+      fetch("https://www.appssquare.sa/api/submit", {
         method: "POST",
         body: formData,
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
         .then((data) => {
           console.log("Success:", data);
         })
@@ -108,6 +131,9 @@ function Form() {
       }, 3500);
     } else {
       setFormValid(false);
+      alert(
+        "Please Fill in All The Fields Correctly Before Submitting The Form 🌹"
+      );
     }
   };
 
@@ -145,9 +171,11 @@ function Form() {
           <img
             src={imagePreview}
             alt="Image Preview"
-            width="100"
             className="uploaded-image"
           />
+          <button className="remove-image" onClick={removeImage}>
+            &times;
+          </button>
         </div>
       )}
 
@@ -168,8 +196,6 @@ function Form() {
             <img
               src={imagePreview}
               alt="Uploaded Image"
-              width="50"
-              height="50"
               className="uploaded-image"
             />
           )}
